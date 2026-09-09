@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#141b1d" />
+  <title>DEAD DISTRICT — 市街地サバイバル</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+  <canvas id="game" aria-label="ゾンビTPSゲームの3D画面"></canvas>
+  <div class="vignette"></div><div id="damage-flash"></div>
+  <header><a class="brand" href="/" aria-label="Dead District トップ"><span class="brand-mark">D<span>×</span></span><span>DEAD DISTRICT<small>URBAN SURVIVAL / 01</small></span></a><div class="live-status"><i></i> QUARANTINE ZONE <span>35° 40′ N / 139° 42′ E</span></div><button id="sound" aria-label="音の切り替え">SOUND <b>ON</b></button></header>
+  <div id="hud" hidden>
+    <div class="wave-panel"><span class="eyebrow">SURVIVE THE DISTRICT</span><div>WAVE <b id="wave">01</b><span>/ 05</span></div><p><i></i> 残りのゾンビ <strong id="remaining">0</strong></p></div>
+    <div id="crosshair"><span></span><span></span><span></span><span></span><i></i></div>
+    <div id="hitmarker">×</div>
+    <div id="toast" role="status"></div>
+    <div class="radar-panel"><div class="eyebrow">TACTICAL MAP <span>N ↑</span></div><canvas id="radar" width="180" height="180" aria-label="周辺の敵と障害物の地図"></canvas><div class="map-legend"><i></i> YOU <i></i> HOSTILE</div></div>
+    <div class="health-panel"><div class="eyebrow">VITAL SIGNS <span id="hp-number">100</span></div><div class="health-track"><div id="hp-fill"></div></div><p id="kills">0 KILLS <span> / </span> 0 DESTROYED</p></div>
+    <div class="weapon-panel"><div class="weapon-slots"><span id="slot-rifle" class="selected">1 <b>RIFLE</b></span><span id="slot-rocket">2 <b>ROCKET</b></span></div><div class="weapon-main"><svg id="rifle-icon" viewBox="0 0 180 50" aria-hidden="true"><path d="M10 20h34l12-7h50v5h51v5h18v6h-58l-7 7H87l5 12H78l-9-16H44L17 43H9zM82 6h27v5H82z"/></svg><div><div id="weapon-name">AR-30 ASSAULT RIFLE</div><b id="ammo">30</b><span id="ammo-reserve"> / ∞</span></div></div><div id="reload-status">フルオート · R でリロード</div></div>
+    <footer><span><kbd>W A S D</kbd> 移動 <kbd>SHIFT</kbd> ダッシュ <kbd>RMB</kbd> 照準</span><span><kbd>1 / 2</kbd> 武器切替 <kbd>R</kbd> リロード <kbd>ESC</kbd> 一時停止</span></footer>
+  </div>
+  <main id="menu">
+    <section class="intro">
+      <div class="eyebrow"><span class="accent-line"></span> OPERATION: LAST LIGHT</div>
+      <h1>DEAD<br/><span>DISTRICT</span><i>®</i></h1>
+      <p class="tagline">街は、もう人間のものではない。</p>
+      <p class="description">封鎖された市街地。迫りくる感染者。<br/>ライフルで迎え撃ち、ロケットで突破口を開け。<br/>5つのウェーブを生き残れ。</p>
+      <button id="start" class="primary">作戦開始 <span>DEPLOY →</span></button>
+      <div class="mission-spec"><span><b>05</b> WAVES</span><span><b>02</b> WEAPONS</span><span><b>100%</b> DESTRUCTIBLE*</span></div>
+      <p class="fineprint">* エリア内の建物・車両が破壊可能。背景の街並みは対象外。</p>
+    </section>
+    <aside class="briefing"><span class="eyebrow">FIELD MANUAL / 操作ガイド</span><div><kbd>W A S D</kbd><p>移動<small>SHIFT でダッシュ</small></p></div><div><kbd>MOUSE</kbd><p>視点・射撃<small>左クリックで射撃 / 右クリックで照準</small></p></div><div><kbd>1 / 2</kbd><p>武器の切り替え<small>ライフル / ロケットランチャー</small></p></div><div><kbd>R</kbd><p>リロード<small>ウェーブ間に体力とロケット弾を補給</small></p></div><div class="warning"><span>↗</span><p>街ごと、突破しろ。<small>爆風は敵と障害物を破壊する。<br/>近距離での発射は自分も被弾する。</small></p></div></aside>
+    <div class="menu-bottom"><span><i></i> SECTOR 07 — ABANDONED DOWNTOWN</span><span>3D TPS PROTOTYPE <b>v0.1</b></span></div>
+  </main>
+  <div id="overlay" hidden><section><span class="eyebrow" id="overlay-kicker">OPERATION PAUSED</span><h2 id="overlay-title">一時停止</h2><p id="overlay-description">準備ができたら、市街地へ戻ろう。</p><button id="resume" class="primary">作戦に戻る <span>RESUME →</span></button><button id="restart" class="secondary">最初からやり直す</button></section></div>
+  <div id="fatal" hidden role="alert"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
